@@ -1,3 +1,28 @@
+/* Barre de navigation */
+#navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background-color: #1e1d1d;
+    padding: 20px 20px 20px 0;
+    display: flex;
+    justify-content: right;
+    gap: 20px;
+    z-index: 1000;
+}
+
+#navbar .nav-link {
+    color: #f5f5f5;
+    text-decoration: none;
+    font-size: 1.2em;
+    font-weight: 700;
+    transition: color 0.3s ease;
+}
+
+#navbar .nav-link:hover {
+    color: #EB1A2A;
+}
+
 /* Police moderne et reset */
 body {
     font-family: 'Roboto', sans-serif;
@@ -9,17 +34,17 @@ body {
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    overflow: hidden;
 }
 
-/* Conteneur principal en mode horizontal */
+/* Conteneur principal en mode vertical */
 #main-container {
+    padding-top: 60px; /* Espace pour éviter le chevauchement avec la barre de navigation */
     display: flex;
-    flex-direction: row;
-    align-items: flex-start;
+    flex-direction: column;
+    align-items: center;
     gap: 30px;
     padding: 30px;
-    overflow-x: auto;
+    width: 100%;
     max-width: 1200px;
 }
 
@@ -43,14 +68,11 @@ body {
 #hero {
     text-align: center;
     padding: 20px;
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    width: 100%;
 }
 
 #hero h1 {
-    font-size: 40px;
+    font-size: 2.5em;
     color: #7E59FC;
     margin-bottom: 10px;
     font-weight: 700;
@@ -58,7 +80,7 @@ body {
 }
 
 #hero p {
-    font-size: 18px;
+    font-size: 1em;
     color: #cfcfcf;
     margin-bottom: 20px;
 }
@@ -81,13 +103,16 @@ body {
 
 /* Features Section */
 #features {
-    flex: 1;
     padding: 20px;
     text-align: center;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centrer les cartes */
 }
 
 #features h2 {
-    font-size: 30px;
+    font-size: 2em;
     color: #EB1A2A;
     margin-bottom: 20px;
 }
@@ -101,6 +126,8 @@ body {
     padding: 15px;
     border-radius: 12px;
     transition: transform 0.3s ease;
+    width: 100%;
+    max-width: 300px; /* Limite la largeur des cartes */
 }
 
 .feature:hover {
@@ -114,31 +141,64 @@ body {
 }
 
 .feature h3 {
-    font-size: 22px;
+    font-size: 1.5em;
     color: #7E59FC;
     margin: 10px 0;
 }
 
 .feature p {
-    font-size: 16px;
+    font-size: 1em;
     color: #b0b0b0;
+}
+
+/* Lightbox styling */
+.lightbox-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.lightbox-overlay img {
+    max-width: 90%;
+    max-height: 90%;
+    border-radius: 8px;
+}
+
+.lightbox-overlay.visible {
+    display: flex;
+}
+
+.lightbox-overlay .close-btn {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-size: 30px;
+    color: #ffffff;
+    cursor: pointer;
 }
 
 /* About Section */
 #about {
-    flex: 1;
     padding: 20px;
     text-align: center;
+    width: 100%;
 }
 
 #about h2 {
-    font-size: 30px;
+    font-size: 2em;
     color: #EB1A2A;
     margin-bottom: 15px;
 }
 
 #about p {
-    font-size: 16px;
+    font-size: 1em;
     color: #b0b0b0;
     line-height: 1.6;
     margin-bottom: 20px;
@@ -149,7 +209,7 @@ body {
     color: #7E59FC;
     text-decoration: none;
     margin: 0 10px;
-    font-size: 18px;
+    font-size: 1em;
     transition: color 0.3s ease;
 }
 
@@ -157,14 +217,35 @@ body {
     color: #EB1A2A;
 }
 
-/* Media Queries pour Responsivité */
+/* Responsive Styles */
 @media (max-width: 768px) {
-    #main-container {
-        flex-direction: column;
-        align-items: center;
+    #hero h1 {
+        font-size: 2em;
     }
 
-    #logo-container {
-        margin-bottom: 20px;
+    #features h2, #about h2 {
+        font-size: 1.8em;
+    }
+
+    .feature h3 {
+        font-size: 1.3em;
+    }
+}
+
+@media (max-width: 480px) {
+    #hero h1 {
+        font-size: 1.5em;
+    }
+
+    #features h2, #about h2 {
+        font-size: 1.5em;
+    }
+
+    .feature {
+        max-width: 100%;
+    }
+
+    .feature img {
+        width: 100px;
     }
 }
